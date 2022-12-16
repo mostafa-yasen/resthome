@@ -26,3 +26,12 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
   queryset = Product.objects.all()
   serializer_class = ProductSerializer
   lookup_field = 'pk'
+
+
+class ProductDeleteAPIView(generics.DestroyAPIView):
+  queryset = Product.objects.all()
+  serializer_class = ProductSerializer
+  lookup_field = 'pk'
+
+  def perform_destroy(self, instance: Product):
+    super().perform_destroy(instance)
