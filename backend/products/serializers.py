@@ -11,9 +11,13 @@ class ProductSerializer(serializers.ModelSerializer):
       "id",
       "title",
       "content",
+      "price",
       "sale_price",
       "discount_value"
     ]
 
   def get_discount_value(self, obj):
+    if not hasattr(obj, 'id') or not isinstance(obj, Product):
+      return None
+
     return "%.2f" %(float(obj.price) - float(obj.sale_price))
