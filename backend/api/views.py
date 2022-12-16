@@ -1,6 +1,7 @@
 import json 
 
 from django.http import JsonResponse
+from .endpoints.random_product import random_product
 
 
 def api_home(request, *args, **kwargs):
