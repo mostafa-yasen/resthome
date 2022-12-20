@@ -18,7 +18,7 @@ class ProductAPIMixin(
   serializer_class = ProductSerializer
   lookup_field = 'pk'
   authentication_classes = [authentication.SessionAuthentication]
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.DjangoModelPermissions]
 
   def get(self, request, *args, **kwargs):
     if kwargs.get('pk'):
