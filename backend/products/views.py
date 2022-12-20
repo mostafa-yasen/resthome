@@ -5,6 +5,7 @@ from rest_framework import authentication, generics, mixins, permissions
 
 from products.serializers import ProductSerializer
 
+from .permissions import IsStaffEditorPermission
 
 class ProductAPIMixin(
   mixins.CreateModelMixin,
@@ -18,7 +19,7 @@ class ProductAPIMixin(
   serializer_class = ProductSerializer
   lookup_field = 'pk'
   authentication_classes = [authentication.SessionAuthentication]
-  permission_classes = [permissions.DjangoModelPermissions]
+  permission_classes = [IsStaffEditorPermission]
 
   def get(self, request, *args, **kwargs):
     if kwargs.get('pk'):
