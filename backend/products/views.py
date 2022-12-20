@@ -1,7 +1,7 @@
 from products.models import Product
 # from rest_framework.decorators import api_view
 # from rest_framework.response import Response
-from rest_framework import generics, mixins
+from rest_framework import authentication, generics, mixins, permissions
 
 from products.serializers import ProductSerializer
 
@@ -17,6 +17,8 @@ class ProductAPIMixin(
   queryset = Product.objects.all()
   serializer_class = ProductSerializer
   lookup_field = 'pk'
+  authentication_classes = [authentication.SessionAuthentication]
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
   def get(self, request, *args, **kwargs):
     if kwargs.get('pk'):
