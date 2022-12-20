@@ -1,11 +1,10 @@
 
-from django.contrib import admin
-from django.urls import path, include
-from . import views
+from django.urls import path
+from .views import product_mixin_api_view
 
 urlpatterns = [
-    path('', views.ProductListCreateAPIView.as_view()),
-    path('<int:pk>/', views.ProductDetailAPIView.as_view()),
-    path('<int:pk>/update/', views.ProductDetailAPIView.as_view()),
-    path('<int:pk>/delete/', views.ProductDeleteAPIView.as_view()),
+    path('', product_mixin_api_view),
+    path('<int:pk>/', product_mixin_api_view),
+    path('<int:pk>/update/', product_mixin_api_view),
+    path('<int:pk>/delete/', product_mixin_api_view),
 ]
